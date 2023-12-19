@@ -24,4 +24,15 @@ public class MyLike {
     @ManyToOne(fetch =  FetchType.LAZY)
     @JoinColumn(name = "foodType_id")
     private FoodType foodType;
+
+    public void setMember(Member member){
+        if(this.member != null)
+            member.getMyLikeList().remove(this);
+        this.member = member;
+        member.getMyLikeList().add(this);
+    }
+
+    public void setFoodCategory(FoodType foodCategory){
+        this.foodType = foodCategory;
+    }
 }
